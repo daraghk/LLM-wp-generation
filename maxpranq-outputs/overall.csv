@@ -1,0 +1,11 @@
+Benchmark,Result,Time (in ms) or Exit Status
+array_init_addvar,1244,W
+array_init_and_copy_const,825,W
+array_init_increm_twice,627,W
+array_init_increm_two_arrs_antisym,819,W
+array_init_increm,823,W
+array_init_pair_symmetr,1068,W
+array_min_and_copy_shift,1007,W
+nondet-array-bench8,865,W
+nondet-array-bench15,924,W
+nondet-array-bench20,634,W

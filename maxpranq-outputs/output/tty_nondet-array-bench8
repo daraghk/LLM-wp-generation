@@ -1,0 +1,722 @@
+
+
+
+===============
+inferInvNondet for chc:  inv -> fail
+
+
+ hr.body (exists (INT) [&&    0<=i1    select(_FH_6, i1)!=select(_FH_7, i1)    _FH_4>=_FH_5    i1<_FH_5])
+
+cands [src]:  
+cands [dst]:  
+ check chc: inv  -> false
+Model: [&&    _FH_4=1    _FH_5=1    _FH_6=const-array(INT, 7720)    _FH_7=const-array(INT, 7719)]
+
+ src->  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      (i1>=_FH_4)
+    ]]
+
+ dst->
+
+
+===============
+inferInvNondet for chc:  inv -> inv
+
+
+ hr.body [&&    store(_FH_6, _FH_4, select(_FH_6, _FH_4))=_FH_6'    _FH_4'=(_FH_4+1)    _FH_4<_FH_5    _FH_5=_FH_5'    store(_FH_8, _FH_4, select(_FH_7, _FH_4))=_FH_8'    store(_FH_7, _FH_4, select(_FH_7, _FH_4))=_FH_7']
+
+cands [src]:  
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      (i1>=_FH_4)
+    ]]
+ check chc: inv  -> inv
+Model: [&&    _FH_4=0    _FH_5=1    _FH_8=const-array(INT, 0)    _FH_4'=1    _FH_5'=1    _FH_8'=store(const-array(INT, 0), 0, 1235)]
+>>>>>>>>>>>>>> next cand: (forall (INT) [||    0>i1    select(_FH_6, i1)=select(_FH_7, i1)    i1>=_FH_5    i1>=_FH_4])
+retres: [||    0>i1    i1>=_FH_5    i1>=_FH_4]
+dcda: (select(_FH_6, i1)=select(_FH_7, i1))
+dcdr: ((0>i1)||(i1>=_FH_5))
+dc: (select(_FH_6', i1)!=select(_FH_7', i1))
+    >>> nbt (store(_FH_6, _FH_4, select(_FH_6, _FH_4))=_FH_6')
+      ----> (select(_FH_6, i1)=select(_FH_6', i1))
+    >>> nbt (_FH_4'=(_FH_4+1))
+      ----> (select(_FH_6, i1)=select(_FH_6', i1))
+    >>> nbt (_FH_4<_FH_5)
+      ----> (select(_FH_6, i1)=select(_FH_6', i1))
+    >>> nbt (_FH_5=_FH_5')
+      ----> (_FH_5=_FH_5')
+    >>> nbt (store(_FH_8, _FH_4, select(_FH_7, _FH_4))=_FH_8')
+      ----> (select(_FH_7, i1)=select(_FH_8', i1))
+    >>> nbt (store(_FH_7, _FH_4, select(_FH_7, _FH_4))=_FH_7')
+      ----> (select(_FH_7, i1)=select(_FH_7', i1))
+eTmp: [&&
+  (_FH_5=_FH_5')
+  (__repl_2!=__repl_3)
+  (__repl_1=__repl_2)
+  (__repl_0=__repl_4)
+  (__repl_0=__repl_3)
+]
+
+to elim: _FH_5', _FH_6', _FH_7', _FH_8', __repl_2, __repl_3, __repl_4
+res = (__repl_1!=__repl_0)
+newcnd: (select(_FH_6, i1)!=select(_FH_7, i1))
+abdtype: 0
+nonvac: (select(_FH_6, i1)=select(_FH_7, i1))
+RF: (i1>=_FH_4)
+AF0: (((0>i1)||(i1>=_FH_5))||(select(_FH_6, i1)=select(_FH_7, i1)))
+
+ src->  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      (i1>=_FH_4)
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+    ]]
+
+ dst->  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      (i1>=_FH_4)
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+    ]]
+
+
+
+===============
+inferInvNondet for chc:  inv -> inv
+
+
+ hr.body [&&    _FH_4'=(_FH_4+1)    _FH_4<_FH_5    _FH_5=_FH_5'    store(_FH_7, _FH_4, select(_FH_7, _FH_4))=_FH_7'    store(_FH_8, _FH_4, select(_FH_8, _FH_4))=_FH_8'    store(_FH_6, _FH_4, select(_FH_7, _FH_4)+(-select(_FH_8, _FH_4)))=_FH_6']
+
+cands [src]:  
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      (i1>=_FH_4)
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+    ]]
+ check chc: inv  -> inv
+Model: [&&    _FH_4=0    _FH_5=1    _FH_6=store(store(store(const-array(INT, 6), -5854, 609), 0, 8366), -1, 2283)    _FH_7=store(store(store(const-array(INT, 5), -5854, 610), 0, 8366), -1, 2282)    _FH_8=const-array(INT, 1)    _FH_4'=1    _FH_5'=1    _FH_6'=store(store(store(store(const-array(INT, 6), -5854, 609), 0, 8366), -1, 2283), 0, 8365)    _FH_7'=store(store(store(const-array(INT, 5), -5854, 610), 0, 8366), -1, 2282)    _FH_8'=const-array(INT, 1)]
+>>>>>>>>>>>>>> next cand: (forall (INT) [||    0>i1    select(_FH_6, i1)=select(_FH_7, i1)    i1>=_FH_5    i1>=_FH_4])
+retres: [||    0>i1    i1>=_FH_5    i1>=_FH_4]
+dcda: (select(_FH_6, i1)=select(_FH_7, i1))
+dcdr: ((0>i1)||(i1>=_FH_5))
+dc: (select(_FH_6', i1)!=select(_FH_7', i1))
+    >>> nbt (_FH_4'=(_FH_4+1))
+      ----> (select(_FH_6', i1)!=select(_FH_7', i1))
+    >>> nbt (_FH_4<_FH_5)
+      ----> (select(_FH_6', i1)!=select(_FH_7', i1))
+    >>> nbt (_FH_5=_FH_5')
+      ----> (_FH_5=_FH_5')
+    >>> nbt (store(_FH_7, _FH_4, select(_FH_7, _FH_4))=_FH_7')
+      ----> (select(_FH_7, i1)=select(_FH_7', i1))
+    >>> nbt (store(_FH_8, _FH_4, select(_FH_8, _FH_4))=_FH_8')
+      ----> (select(_FH_8, i1)=select(_FH_8', i1))
+    >>> nbt (store(_FH_6, _FH_4, select(_FH_7, _FH_4)+(-select(_FH_8, _FH_4)))=_FH_6')
+      ----> ((select(_FH_7, i1)+(-select(_FH_8, i1)))=select(_FH_6', i1))
+eTmp: [&&
+  (_FH_5=_FH_5')
+  (__repl_1!=__repl_2)
+  (__repl_0=__repl_2)
+  (__repl_3=__repl_4)
+  ((__repl_0+(-__repl_3))=__repl_1)
+]
+
+to elim: _FH_5', _FH_6', _FH_7', _FH_8', __repl_1, __repl_2, __repl_4
+res = ((__repl_0+(-__repl_3))!=__repl_0)
+newcnd: ((-select(_FH_8, i1))!=0)
+abdtype: 0
+nonvac: ((-select(_FH_8, i1))=0)
+RF: (i1>=_FH_4)
+AF0: (((0>i1)||(i1>=_FH_5))||((-select(_FH_8, i1))=0))
+>>>>>>>>>>>>>> next cand: (forall (INT) [||    0>i1    select(_FH_6, i1)=select(_FH_7, i1)    i1>=_FH_5    i1<_FH_4])
+retres: [||    0>i1    i1>=_FH_5    i1<_FH_4]
+
+ src->  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      (i1>=_FH_4)
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+      ((-select(_FH_8, i1))=0)
+    ]]
+
+ dst->  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      (i1>=_FH_4)
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+      ((-select(_FH_8, i1))=0)
+    ]]
+
+
+
+===============
+inferInvNondet for chc:  pre -> inv
+
+
+ hr.body [&&    0=_FH_4'    _FH_1=_FH_6'    _FH_2=_FH_7'    _FH_3=_FH_8'    _FH_0=_FH_5']
+
+cands [src]:  
+cands [dst]:  
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      (i1>=_FH_4)
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+      ((-select(_FH_8, i1))=0)
+    ]]
+ check chc: pre  -> inv
+Model: [&&    _FH_0=1    _FH_1=const-array(INT, 1236)    _FH_2=const-array(INT, 1237)    _FH_3=const-array(INT, 2)    _FH_4'=0    _FH_5'=1    _FH_6'=const-array(INT, 1236)    _FH_7'=const-array(INT, 1237)    _FH_8'=const-array(INT, 2)]
+>>>>>>>>>>>>>> next cand: (forall (INT) [||    0>i1    select(_FH_6, i1)=select(_FH_7, i1)    i1>=_FH_5    i1>=_FH_4])
+retres: [||    0>i1    i1>=_FH_5    i1>=_FH_4]
+>>>>>>>>>>>>>> next cand: (forall (INT) [||    0>i1    select(_FH_6, i1)=select(_FH_7, i1)    i1>=_FH_5    i1<_FH_4])
+retres: [||    0>i1    i1>=_FH_5    i1<_FH_4]
+dcda: (select(_FH_6, i1)=select(_FH_7, i1))
+dcdr: [||    0>i1    i1>=_FH_5    i1<_FH_4]
+dc: [&&    0<=i1    select(_FH_6', i1)!=select(_FH_7', i1)    i1<_FH_5'    i1>=_FH_4']
+    >>> nbt (0=_FH_4')
+      ----> (0=_FH_4')
+    >>> nbt (_FH_1=_FH_6')
+      ----> (_FH_1=_FH_6')
+    >>> nbt (_FH_2=_FH_7')
+      ----> (_FH_2=_FH_7')
+    >>> nbt (_FH_3=_FH_8')
+      ----> (_FH_3=_FH_8')
+    >>> nbt (_FH_0=_FH_5')
+      ----> (_FH_0=_FH_5')
+eTmp: [&&
+  (0=_FH_4')
+  (_FH_1=_FH_6')
+  (_FH_2=_FH_7')
+  (_FH_3=_FH_8')
+  (_FH_0=_FH_5')
+  (0<=i1)
+  (i1<_FH_5')
+  (i1>=_FH_4')
+  (__repl_0!=__repl_1)
+]
+
+to elim: _FH_4', _FH_5', _FH_6', _FH_7', _FH_8', __repl_0, __repl_1
+res = [&&    0<=i1    i1>=0    _FH_0>i1]
+newcnd: [&&    0<=i1    i1>=0    _FH_0>i1]
+abdtype: 0
+nonvac: [||    0>i1    i1<0    _FH_0<=i1]
+dc: [&&    0<=i1    select(_FH_6', i1)!=select(_FH_7', i1)    i1<_FH_5'    i1>=_FH_4']
+    >>> nbt (0=_FH_4')
+      ----> (0=_FH_4')
+    >>> nbt (_FH_1=_FH_6')
+      ----> (select(_FH_1, i1)=select(_FH_6', i1))
+    >>> nbt (_FH_2=_FH_7')
+      ----> (select(_FH_2, i1)=select(_FH_7', i1))
+    >>> nbt (_FH_3=_FH_8')
+      ----> (select(_FH_3, i1)=select(_FH_8', i1))
+    >>> nbt (_FH_0=_FH_5')
+      ----> (_FH_0=_FH_5')
+eTmp: [&&
+  (0=_FH_4')
+  (_FH_0=_FH_5')
+  (0<=i1)
+  (i1<_FH_5')
+  (i1>=_FH_4')
+  (__repl_0!=__repl_1)
+  (__repl_3=__repl_0)
+  (__repl_4=__repl_1)
+  (__repl_5=__repl_2)
+]
+
+to elim: _FH_4', _FH_5', _FH_6', _FH_7', _FH_8', __repl_0, __repl_1, __repl_2
+res = [&&    0<=i1    i1>=0    i1<_FH_0    __repl_3!=__repl_4]
+newcnd: [&&    0<=i1    i1>=0    i1<_FH_0    select(_FH_1, i1)!=select(_FH_2, i1)]
+abdtype: 1
+nonvac: [||    0>i1    i1<0    i1>=_FH_0    select(_FH_1, i1)=select(_FH_2, i1)]
+>>>>>>>>>>>>>> next cand: (forall (INT) [||    0>i1    i1>=_FH_5    i1<_FH_4    (-select(_FH_8, i1))=0])
+retres: [||    0>i1    i1>=_FH_5    i1<_FH_4]
+dcda: ((-select(_FH_8, i1))=0)
+dcdr: [||    0>i1    i1>=_FH_5    i1<_FH_4]
+dc: [&&    0<=i1    i1<_FH_5'    i1>=_FH_4'    (-select(_FH_8', i1))!=0]
+    >>> nbt (0=_FH_4')
+      ----> (0=_FH_4')
+    >>> nbt (_FH_1=_FH_6')
+      ----> (_FH_1=_FH_6')
+    >>> nbt (_FH_2=_FH_7')
+      ----> (_FH_2=_FH_7')
+    >>> nbt (_FH_3=_FH_8')
+      ----> (_FH_3=_FH_8')
+    >>> nbt (_FH_0=_FH_5')
+      ----> (_FH_0=_FH_5')
+eTmp: [&&
+  (0=_FH_4')
+  (_FH_1=_FH_6')
+  (_FH_2=_FH_7')
+  (_FH_3=_FH_8')
+  (_FH_0=_FH_5')
+  (0<=i1)
+  (i1<_FH_5')
+  (i1>=_FH_4')
+  ((-__repl_0)!=0)
+]
+
+to elim: _FH_4', _FH_5', _FH_6', _FH_7', _FH_8', __repl_0
+res = [&&    0<=i1    i1>=0    _FH_0>i1]
+newcnd: [&&    0<=i1    i1>=0    _FH_0>i1]
+abdtype: 0
+nonvac: [||    0>i1    i1<0    _FH_0<=i1]
+dc: [&&    0<=i1    i1<_FH_5'    i1>=_FH_4'    (-select(_FH_8', i1))!=0]
+    >>> nbt (0=_FH_4')
+      ----> (0=_FH_4')
+    >>> nbt (_FH_1=_FH_6')
+      ----> (select(_FH_1, i1)=select(_FH_6', i1))
+    >>> nbt (_FH_2=_FH_7')
+      ----> (select(_FH_2, i1)=select(_FH_7', i1))
+    >>> nbt (_FH_3=_FH_8')
+      ----> (select(_FH_3, i1)=select(_FH_8', i1))
+    >>> nbt (_FH_0=_FH_5')
+      ----> (_FH_0=_FH_5')
+eTmp: [&&
+  (0=_FH_4')
+  (_FH_0=_FH_5')
+  (0<=i1)
+  (i1<_FH_5')
+  (i1>=_FH_4')
+  ((-__repl_2)!=0)
+  (__repl_3=__repl_0)
+  (__repl_4=__repl_1)
+  (__repl_5=__repl_2)
+]
+
+to elim: _FH_4', _FH_5', _FH_6', _FH_7', _FH_8', __repl_0, __repl_1, __repl_2
+res = [&&    0<=i1    i1>=0    i1<_FH_0    (-__repl_5)!=0]
+newcnd: [&&    0<=i1    i1>=0    i1<_FH_0    (-select(_FH_3, i1))!=0]
+abdtype: 1
+nonvac: [||    0>i1    i1<0    i1>=_FH_0    (-select(_FH_3, i1))=0]
+
+ src->  [forall (i1)
+    [||
+      (0>i1)
+      (i1<0)
+      (i1>=_FH_0)
+      (select(_FH_1, i1)=select(_FH_2, i1))
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (i1<0)
+      (i1>=_FH_0)
+      ((-select(_FH_3, i1))=0)
+    ]]
+
+ dst->  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      (i1>=_FH_4)
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (select(_FH_6, i1)=select(_FH_7, i1))
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+    ]]
+  [forall (i1)
+    [||
+      (0>i1)
+      (i1>=_FH_5)
+      [!
+        (i1>=_FH_4)
+      ]
+      ((-select(_FH_8, i1))=0)
+    ]]
+multihoudini, size 0
+ checkAllOver
+ check chc: pre  -> inv
+ check chc: inv  -> inv
+ check chc: inv  -> inv
+ check chc: inv  -> false
+unsat
+(define-fun pre ((_FH_0 Int)(_FH_1 (Array Int Int))(_FH_2 (Array Int Int))(_FH_3 (Array Int Int))) Bool
+  (and (forall ((i1 Int)) (or (> 0 i1) (< i1 0) (>= i1 _FH_0) (= (select _FH_1 i1) (select _FH_2 i1)))) (forall ((i1 Int)) (or (> 0 i1) (< i1 0) (>= i1 _FH_0) (= (- (select _FH_3 i1)) 0)))))
+(define-fun inv ((_FH_4 Int)(_FH_5 Int)(_FH_6 (Array Int Int))(_FH_7 (Array Int Int))(_FH_8 (Array Int Int))) Bool
+  (and (forall ((i1 Int)) (or (> 0 i1) (= (select _FH_6 i1) (select _FH_7 i1)) (>= i1 _FH_5) (>= i1 _FH_4))) (forall ((i1 Int)) (or (> 0 i1) (= (select _FH_6 i1) (select _FH_7 i1)) (>= i1 _FH_5) (not (>= i1 _FH_4)))) (forall ((i1 Int)) (or (> 0 i1) (>= i1 _FH_5) (not (>= i1 _FH_4)) (= (- (select _FH_8 i1)) 0)))))
+(define-fun fail () Bool
+  true)
+pre time:  434.862
+dumped to: /tmp//nondet-array-bench8_1730873501228499381.smt2
+
+1: 2,
+2: 1,
+
+
+===============
+inferInvNondet for chc:  inv -> fail
+
+
+ hr.body ((forall (INT) [||    0>i1    select(_FH_2, i1)=select(_FH_3, i1)    i1>=_FH_1])&&(_FH_0>=_FH_1))
+
+cands [src]:  
+cands [dst]:  
+ check chc: inv  -> false
+Model: [&&    _FH_0=0    _FH_2=const-array(INT, 0)    _FH_3=const-array(INT, 0)    _FH_1=0]
+
+ src->  [||
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1<_FH_0)
+        (select(_FH_2, i1)!=select(_FH_3, i1))
+        (i1<_FH_1)
+      ]]
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1>=_FH_0)
+        (i1<_FH_1)
+      ]]
+  ]
+
+ dst->1 -> true
+2 -> true
+
+
+
+===============
+inferInvNondet for chc:  inv -> inv
+
+
+ hr.body [&&    _FH_0'=(_FH_0+1)    store(_FH_3, _FH_0, select(_FH_3, _FH_0))=_FH_3'    store(_FH_4, _FH_0, select(_FH_3, _FH_0))=_FH_4'    store(_FH_2, _FH_0, select(_FH_2, _FH_0))=_FH_2'    _FH_0<_FH_1    _FH_1=_FH_1']
+
+cands [src]:  
+  [||
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1<_FH_0)
+        (select(_FH_2, i1)!=select(_FH_3, i1))
+        (i1<_FH_1)
+      ]]
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1>=_FH_0)
+        (i1<_FH_1)
+      ]]
+  ]
+ check chc: inv  -> inv
+Model: [&&    _FH_0=0    _FH_2=const-array(INT, -1)    _FH_3=const-array(INT, -1)    _FH_1=1    _FH_4=const-array(INT, 0)    _FH_0'=1    _FH_1'=1    _FH_2'=const-array(INT, -1)    _FH_3'=const-array(INT, -1)    _FH_4'=store(const-array(INT, 0), 0, -1)]
+>>>>>>>>>>>>>> next cand: (exists (INT) [&&    0<=i1    i1<_FH_0    select(_FH_2, i1)!=select(_FH_3, i1)    i1<_FH_1])
+retres: [&&    0<=i1    i1<_FH_0    i1<_FH_1]
+dcda: (select(_FH_2, i1)!=select(_FH_3, i1))
+dcdr: ((0<=i1)&&(i1<_FH_1))
+dc: (select(_FH_2', i1)=select(_FH_3', i1))
+    >>> nbt (_FH_0'=(_FH_0+1))
+      ----> (select(_FH_2', i1)=select(_FH_3', i1))
+    >>> nbt (store(_FH_3, _FH_0, select(_FH_3, _FH_0))=_FH_3')
+      ----> (select(_FH_3, i1)=select(_FH_3', i1))
+    >>> nbt (store(_FH_4, _FH_0, select(_FH_3, _FH_0))=_FH_4')
+      ----> (select(_FH_3, i1)=select(_FH_4', i1))
+    >>> nbt (store(_FH_2, _FH_0, select(_FH_2, _FH_0))=_FH_2')
+      ----> (select(_FH_2, i1)=select(_FH_2', i1))
+    >>> nbt (_FH_0<_FH_1)
+      ----> (select(_FH_2, i1)=select(_FH_2', i1))
+    >>> nbt (_FH_1=_FH_1')
+      ----> (_FH_1=_FH_1')
+eTmp: [&&
+  (_FH_1=_FH_1')
+  (__repl_4=__repl_2)
+  (__repl_1=__repl_2)
+  (__repl_1=__repl_3)
+  (__repl_0=__repl_4)
+]
+
+to elim: __repl_2, __repl_3, __repl_4, _FH_1', _FH_2', _FH_3', _FH_4'
+res = (__repl_1=__repl_0)
+newcnd: (select(_FH_3, i1)=select(_FH_2, i1))
+abdtype: 0
+nonvac: (select(_FH_3, i1)!=select(_FH_2, i1))
+
+ src->  [||
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1<_FH_0)
+        (select(_FH_2, i1)!=select(_FH_3, i1))
+        (i1<_FH_1)
+      ]]
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1>=_FH_0)
+        (i1<_FH_1)
+      ]]
+  ]
+
+ dst->  [||
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1<_FH_0)
+        (select(_FH_2, i1)!=select(_FH_3, i1))
+        (i1<_FH_1)
+      ]]
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1>=_FH_0)
+        (i1<_FH_1)
+      ]]
+  ]
+1 -> (select(_FH_3, _FH_0)!=select(_FH_2, _FH_0))
+2 -> (select(_FH_3, _FH_0)=select(_FH_2, _FH_0))
+
+
+
+===============
+inferInvNondet for chc:  inv -> inv
+
+
+ hr.body [&&    _FH_0'=(_FH_0+1)    store(_FH_3, _FH_0, select(_FH_3, _FH_0))=_FH_3'    _FH_0<_FH_1    _FH_1=_FH_1'    store(_FH_4, _FH_0, select(_FH_4, _FH_0))=_FH_4'    store(_FH_2, _FH_0, select(_FH_3, _FH_0)+(-select(_FH_4, _FH_0)))=_FH_2']
+
+cands [src]:  
+  [||
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1<_FH_0)
+        (select(_FH_2, i1)!=select(_FH_3, i1))
+        (i1<_FH_1)
+      ]]
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1>=_FH_0)
+        (i1<_FH_1)
+      ]]
+  ]
+ check chc: inv  -> inv
+Model: [&&    _FH_0=0    _FH_2=store(store(const-array(INT, 4), -1797, -8366), 0, -2437)    _FH_3=store(store(const-array(INT, 5), -1797, -8367), 0, -2437)    _FH_1=1    _FH_4=const-array(INT, 0)    _FH_0'=1    _FH_1'=1    _FH_2'=store(store(const-array(INT, 4), -1797, -8366), 0, -2437)    _FH_3'=store(store(const-array(INT, 5), -1797, -8367), 0, -2437)    _FH_4'=const-array(INT, 0)]
+>>>>>>>>>>>>>> next cand: (exists (INT) [&&    0<=i1    i1<_FH_0    select(_FH_2, i1)!=select(_FH_3, i1)    i1<_FH_1])
+retres: [&&    0<=i1    i1<_FH_0    i1<_FH_1]
+dcda: (select(_FH_2, i1)!=select(_FH_3, i1))
+dcdr: ((0<=i1)&&(i1<_FH_1))
+dc: (select(_FH_2', i1)=select(_FH_3', i1))
+    >>> nbt (_FH_0'=(_FH_0+1))
+      ----> (select(_FH_2', i1)=select(_FH_3', i1))
+    >>> nbt (store(_FH_3, _FH_0, select(_FH_3, _FH_0))=_FH_3')
+      ----> (select(_FH_3, i1)=select(_FH_3', i1))
+    >>> nbt (_FH_0<_FH_1)
+      ----> (select(_FH_3, i1)=select(_FH_3', i1))
+    >>> nbt (_FH_1=_FH_1')
+      ----> (_FH_1=_FH_1')
+    >>> nbt (store(_FH_4, _FH_0, select(_FH_4, _FH_0))=_FH_4')
+      ----> (select(_FH_4, i1)=select(_FH_4', i1))
+    >>> nbt (store(_FH_2, _FH_0, select(_FH_3, _FH_0)+(-select(_FH_4, _FH_0)))=_FH_2')
+      ----> ((select(_FH_3, i1)+(-select(_FH_4, i1)))=select(_FH_2', i1))
+    >>> nbt (select(_FH_3, _FH_0)=select(_FH_2, _FH_0))
+      ----> (select(_FH_3, _FH_0)=select(_FH_2, _FH_0))
+eTmp: [&&
+  (_FH_1=_FH_1')
+  (__repl_3=__repl_1)
+  (__repl_0=__repl_1)
+  (__repl_6=__repl_2)
+  ((__repl_0+(-__repl_6))=__repl_3)
+  (__repl_4=__repl_5)
+]
+
+to elim: _FH_0, __repl_1, __repl_2, __repl_3, __repl_4, __repl_5, _FH_1', _FH_2', _FH_3', _FH_4'
+res = ((__repl_0+(-__repl_6))=__repl_0)
+newcnd: ((-select(_FH_4, i1))=0)
+abdtype: 0
+nonvac: ((-select(_FH_4, i1))!=0)
+RF: (i1>=_FH_0)
+AF0: (((0<=i1)&&(i1<_FH_1))&&((-select(_FH_4, i1))!=0))
+>>>>>>>>>>>>>> next cand: (exists (INT) [&&    0<=i1    i1>=_FH_0    i1<_FH_1])
+
+ src->  [||
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1<_FH_0)
+        (select(_FH_2, i1)!=select(_FH_3, i1))
+        (i1<_FH_1)
+      ]]
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1>=_FH_0)
+        (i1<_FH_1)
+        ((-select(_FH_4, i1))!=0)
+      ]]
+  ]
+
+ dst->  [||
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1<_FH_0)
+        (select(_FH_2, i1)!=select(_FH_3, i1))
+        (i1<_FH_1)
+      ]]
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1>=_FH_0)
+        (i1<_FH_1)
+        ((-select(_FH_4, i1))!=0)
+      ]]
+  ]
+1 -> (select(_FH_3, _FH_0)!=select(_FH_2, _FH_0))
+2 -> (select(_FH_3, _FH_0)=select(_FH_2, _FH_0))
+
+
+
+===============
+inferInvNondet for chc:   -> inv
+
+
+ hr.body ((0=_FH_0')&&((exists (INT) [&&    0<=i1    i1>=0    i1<_FH_1'    (-select(_FH_4', i1))!=0])||(exists (INT) [&&    0<=i1    i1>=0    i1<_FH_1'    select(_FH_2', i1)!=select(_FH_3', i1)])))
+
+ check chc:  -> inv
+Model: [&&    _FH_0'=0    _FH_1'=1798    _FH_2'=const-array(INT, 8855)    _FH_3'=const-array(INT, 8854)]
+initic: (0=_FH_0')
+initqc: ((exists (INT) [&&    0<=i1    i1>=0    i1<_FH_1'    (-select(_FH_4', i1))!=0])||(exists (INT) [&&    0<=i1    i1>=0    i1<_FH_1'    select(_FH_2', i1)!=select(_FH_3', i1)]))
+(exists (INT) [&&    0<=i1    i1<_FH_0    select(_FH_2, i1)!=select(_FH_3, i1)    i1<_FH_1])
+(exists (INT) [&&    ((0<=i1)&&(i1<_FH_1))&&((-select(_FH_4, i1))!=0)    i1>=_FH_0    i1<_FH_1])
+retres: [&&    0<=i1    i1>=_FH_0    i1<_FH_1]
+retres: (select(_FH_2', i1)!=select(_FH_3', i1))
+
+ dst->  [||
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1<_FH_0)
+        (select(_FH_2, i1)!=select(_FH_3, i1))
+        (i1<_FH_1)
+      ]]
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1>=_FH_0)
+        (i1<_FH_1)
+        ((-select(_FH_4, i1))!=0)
+      ]]
+    [exists (i1)
+      [&&
+        (0<=i1)
+        (i1>=_FH_0)
+        (select(_FH_2, i1)!=select(_FH_3, i1))
+        (i1<_FH_1)
+      ]]
+  ]
+multihoudini, size 0
+ checkAllOver
+ check chc:  -> inv
+ check chc: inv  -> inv
+ check chc: inv  -> inv
+ check chc: inv  -> false
+unsat
+(define-fun inv ((_FH_0 Int)(_FH_1 Int)(_FH_2 (Array Int Int))(_FH_3 (Array Int Int))(_FH_4 (Array Int Int))) Bool
+  (or (exists ((i1 Int)) (and (<= 0 i1) (< i1 _FH_0) (distinct (select _FH_2 i1) (select _FH_3 i1)) (< i1 _FH_1))) (exists ((i1 Int)) (and (<= 0 i1) (>= i1 _FH_0) (< i1 _FH_1) (distinct (- (select _FH_4 i1)) 0))) (exists ((i1 Int)) (and (<= 0 i1) (>= i1 _FH_0) (distinct (select _FH_2 i1) (select _FH_3 i1)) (< i1 _FH_1)))))
+(define-fun fail () Bool
+  true)
+maximal!
+unsat
+(define-fun pre ((_FH_0 Int)(_FH_1 (Array Int Int))(_FH_2 (Array Int Int))(_FH_3 (Array Int Int))) Bool
+  (and (forall ((i1 Int)) (or (> 0 i1) (< i1 0) (>= i1 _FH_0) (= (select _FH_1 i1) (select _FH_2 i1)))) (forall ((i1 Int)) (or (> 0 i1) (< i1 0) (>= i1 _FH_0) (= (- (select _FH_3 i1)) 0)))))
+(define-fun inv ((_FH_4 Int)(_FH_5 Int)(_FH_6 (Array Int Int))(_FH_7 (Array Int Int))(_FH_8 (Array Int Int))) Bool
+  (and (forall ((i1 Int)) (or (> 0 i1) (= (select _FH_6 i1) (select _FH_7 i1)) (>= i1 _FH_5) (>= i1 _FH_4))) (forall ((i1 Int)) (or (> 0 i1) (= (select _FH_6 i1) (select _FH_7 i1)) (>= i1 _FH_5) (not (>= i1 _FH_4)))) (forall ((i1 Int)) (or (> 0 i1) (>= i1 _FH_5) (not (>= i1 _FH_4)) (= (- (select _FH_8 i1)) 0)))))
+(define-fun fail () Bool
+  true)
+m/n time:  283.192

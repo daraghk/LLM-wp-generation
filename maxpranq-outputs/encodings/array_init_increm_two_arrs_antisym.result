@@ -1,0 +1,6 @@
+(define-fun inv1 ((_FH_0 (Array Int Int))(_FH_1 (Array Int Int))(_FH_2 Int)(_FH_3 Int)) Bool
+  (forall ((i1 Int)) (or (>= 0 i1) (< i1 0) (>= i1 _FH_3) (>= (select _FH_0 i1) (+ (select _FH_1 i1) 1)))))
+(define-fun inv2 ((_FH_4 (Array Int Int))(_FH_5 (Array Int Int))(_FH_6 Int)(_FH_7 Int)) Bool
+  (and (forall ((i1 Int)) (or (>= 0 i1) (>= i1 _FH_7) (>= (select _FH_4 i1) (select _FH_5 i1)) (>= i1 _FH_6))) (forall ((i1 Int)) (or (>= 0 i1) (>= i1 _FH_7) (not (>= i1 _FH_6)) (>= (select _FH_4 i1) (+ (select _FH_5 i1) 1))))))
+(define-fun fail () Bool
+  true)

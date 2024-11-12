@@ -1,0 +1,10 @@
+array_init_addvar,1244
+array_init_and_copy_const,825
+array_init_increm,823
+array_init_increm_twice,627
+array_init_increm_two_arrs_antisym,819
+array_init_pair_symmetr,1068
+array_min_and_copy_shift,1007
+nondet-array-bench15,924
+nondet-array-bench20,634
+nondet-array-bench8,865

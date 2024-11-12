@@ -1,0 +1,30 @@
+void foo(int N, int a[N], int b[N], int c[N])
+{
+  // Weakest Precondition
+
+  int i = 0;
+  if (N <= 0) goto end;
+
+  // Loop Invariant:
+  while (i < N) {
+    int nd;
+    if (nd) {
+      b[i] = a[i];
+    } else {
+      b[i] = a[i] - 1;
+    }
+    i++;
+  }
+
+  i = 0;
+  while (i < N) {
+    if (b[i] < 1) goto ERROR_1;
+    i++;
+  }
+  goto end;
+ ERROR_1:;
+ end:;
+   return;
+}
+
+
