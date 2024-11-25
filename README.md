@@ -1,6 +1,6 @@
 # LLM-wp-generation
 
-This repository contains 10 benchmark programs; in both C syntax ('programs') and smt2 syntax ('programs/smt).
+This repository contains 11 benchmark programs; in both C syntax ('programs') and smt2 syntax ('programs/smt) - the program in '/when-o1-preview-fails' does not contain an SMT encoded equivalent.
 The default programs are
 - Non-deterministic
 - Contain loops
