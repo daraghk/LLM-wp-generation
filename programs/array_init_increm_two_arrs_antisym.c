@@ -9,7 +9,7 @@ void foo(int N, int a[N], int b[N], int c[N])
   while (i < N) {
     int nd;
     if (nd) {
-      a[i] = i+1;
+      a[i] = a[i]+1;
     } else {
       b[i] = b[i]+1;
     }
