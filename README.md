@@ -3,6 +3,8 @@
 This repository contains 11 benchmark programs; in both C syntax ('programs') and SMT-lib syntax ('programs/smt) - the program in 'programs/when-o1-preview-fails' does not contain an SMT-lib encoded equivalent.
 The default programs contain 
 - Non-determinism
+- Arrays
+- Arithmetic
 - Loops
 - Postconditions
 
